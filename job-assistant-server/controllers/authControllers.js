@@ -11,7 +11,17 @@ const registerUser = async (req, res) => {
       .json({ message: "Registration Failed", error: error.message });
   }
 };
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const { token, userId } = await AuthService.loginUser(email, password);
+    res.status(200).json({ token, userId });
+  } catch (error) {
+    res.status(500).json({ message: "Login Failed", error: error.message });
+  }
+};
 
 export const AuthController = {
   registerUser,
+  loginUser,
 };

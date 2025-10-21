@@ -23,6 +23,21 @@ const registerUser = async (email, password) => {
   });
   return { token, userId: user._id };
 };
+const loginUser = async (email, password) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("Invalid credentials");
+  }
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    throw new Error("Invalid credentials");
+  }
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+  return { token, userId: user._id };
+};
 export const AuthService = {
   registerUser,
+  loginUser,
 };
