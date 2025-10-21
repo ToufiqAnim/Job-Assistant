@@ -1,0 +1,104 @@
+{
+  "email": "johndoe@example.com",
+  "password": "$2b$10$Kp9qzM84HcVgS6gX1yG3eOK3iLkA1y2sGgPbEYP5sXxwJp93o4mzu",
+  "profile": {
+    "name": "John Doe",
+    "phone": 8801765432109,
+    "location": "Dhaka, Bangladesh",
+    "linkedIn": "https://www.linkedin.com/in/johndoe",
+    "github": "https://github.com/johndoe",
+    "portfolio": "https://johndoe.dev"
+  },
+  "masterResume": {
+    "summary": "MERN Stack Developer with 3+ years of experience building scalable web apps using React, Node.js, and MongoDB. Passionate about AI-driven applications and system design.",
+    "experience": [
+      {
+        "title": "Full Stack Developer",
+        "company": "TechNova Solutions",
+        "location": "Dhaka, Bangladesh",
+        "startDate": "2022-03-01T00:00:00.000Z",
+        "endDate": "2024-06-30T00:00:00.000Z",
+        "description": [
+          "Built and deployed full-stack web applications using the MERN stack.",
+          "Collaborated with UI/UX designers to improve performance and design consistency."
+        ],
+        "achivements": [
+          "Improved API response time by 40% through optimized MongoDB queries.",
+          "Led migration to React 18 and improved code maintainability."
+        ]
+      },
+      {
+        "title": "Backend Developer Intern",
+        "company": "InnovateX Labs",
+        "location": "Remote",
+        "startDate": "2021-06-01T00:00:00.000Z",
+        "endDate": "2022-02-01T00:00:00.000Z",
+        "description": [
+          "Developed REST APIs using Express and Node.js.",
+          "Implemented JWT-based authentication and authorization."
+        ],
+        "achivements": [
+          "Reduced server downtime by implementing error-handling middleware.",
+          "Wrote reusable database utilities for MongoDB operations."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "school": "BRAC University",
+        "degree": "Bachelor of Science in Computer Science and Engineering",
+        "graduationDate": "2021-12-15T00:00:00.000Z",
+        "gpa": "3.75"
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Next.js",
+        "TypeScript",
+        "Redis"
+      ],
+      "soft": [
+        "Problem Solving",
+        "Team Collaboration",
+        "Communication",
+        "Time Management"
+      ],
+      "languages": ["English", "Bengali"]
+    },
+    "projects": [
+      {
+        "title": "DevCollab - Real-time Developer Collaboration Platform",
+        "description": "A platform that allows developers to collaborate in real-time using code editors, chat, and project management tools.",
+        "link": "https://devcollab.vercel.app",
+        "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Redis"],
+        "github": "https://github.com/johndoe/devcollab"
+      },
+      {
+        "title": "Task Manager Pro",
+        "description": "A responsive task management app with team support, analytics, and real-time updates.",
+        "link": "https://taskmanagerpro.io",
+        "technologies": ["Next.js", "Express", "MongoDB", "TailwindCSS"],
+        "github": "https://github.com/johndoe/task-manager-pro"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "MongoDB for Developers",
+        "company": "MongoDB University",
+        "date": "2023-07-10T00:00:00.000Z",
+        "link": "https://university.mongodb.com/certification/johndoe"
+      },
+      {
+        "title": "JavaScript Algorithms and Data Structures",
+        "company": "freeCodeCamp",
+        "date": "2022-04-05T00:00:00.000Z",
+        "link": "https://www.freecodecamp.org/certification/johndoe/javascript-algorithms-and-data-structures"
+      }
+    ]
+  },
+  "createdAt": "2025-10-21T00:00:00.000Z"
+}
