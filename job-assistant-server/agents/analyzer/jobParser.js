@@ -1,5 +1,5 @@
-import { extractText, generateContent } from "./aiClient";
-import { CONFIG } from "./config";
+import { extractText, generateContent } from "../common/aiClient";
+import { CONFIG } from "../common/config";
 
 export const parseJobDescription = async (description) => {
   try {

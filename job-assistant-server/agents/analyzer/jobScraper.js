@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { CONFIG } from "./config";
+import { CONFIG } from "../common/config";
 
 export const scrapeJobUrl = async (url) => {
   try {
