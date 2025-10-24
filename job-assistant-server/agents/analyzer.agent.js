@@ -4,10 +4,10 @@ import axios from "axios";
 import { response } from "express";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY,
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
-export const scrapeJbUrl = async (url) => {
+export const scrapeJobUrl = async (url) => {
   try {
     const response = await axios.get(url, {
       headers: {
@@ -55,7 +55,7 @@ export const parseJobDescription = async (description) => {
       model: "gemini-2.5-flash",
       contents: prompt,
     });
-    const text = response.test;
+    const text = response.text;
     const cleanedtext = text
       .replace(/```json\n?/g, "")
       .replace(/```\n?/g, "")
@@ -64,4 +64,71 @@ export const parseJobDescription = async (description) => {
   } catch (error) {
     throw new Error(`Failed to parse job description: ${error.message}`);
   }
+};
+
+// Calculate match score
+export const calculateMatchScore = async (jobRequirements, userProfile) => {
+  try {
+    const prompt = `You are job matching expert. Analyze how well this candidate  matches the job requirements
+      
+      Job Requirements: ${JSON.stringify(jobRequirements, null, 2)}
+
+      Candidate Profile:
+
+      Name: ${userProfile.name || "N/A"}
+      Summary: ${userProfile.summary || "N/A"}
+      Skills: ${JSON.stringify(userProfile.skills, null, 2)}
+      Experience: ${JSON.stringify(
+        userProfile.experience?.slice(0, 3),
+        null,
+        2
+      )}
+Provide a detailed analysis and return ONLY valid JSON:
+{
+  "score": 75,
+  "strengths": ["strength 1", "strength 2", "strength 3"],
+  "gaps": ["gap 1", "gap 2"],
+  "recommendations": ["recommendation 1", "recommendation 2"]
+}
+
+Important:
+- Score should be 0–100
+- Be honest but encouraging
+- Focus on how to improve the application
+Return ONLY the JSON object, no additional text.
+
+    `;
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+    });
+    const text = response.test;
+    const cleanedtext = text
+      .replace(/```json\n?/g, "")
+      .replace(/```\n?/g, "")
+      .trim();
+    return JSON.parse(cleanedtext);
+  } catch (error) {
+    console.error("Match calculation error:", error);
+    throw new Error(`Failed to calculate match: ${error.message}`);
+  }
+};
+
+export const analyzeJob = async (jobInput, userProfile) => {
+  let description;
+
+  if (jobInput.startsWith("http")) {
+    console.log("Scraping job description...");
+    description = await scrapeJobUrl(jobInput);
+  } else {
+    description = jobInput;
+  }
+  console.log("Parsing job description...");
+  const parsed = await parseJobDescription(description);
+  console.log("Calculating match score...");
+  const matchScore = await calculateMatchScore(
+    parsed.requirements,
+    userProfile
+  );
+  return { parsed, matchScore, rawDescription: description };
 };
