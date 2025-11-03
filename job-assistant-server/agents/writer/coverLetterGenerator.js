@@ -1,5 +1,4 @@
-import { generateContent, extractText } from "./aiClient.js";
-import { CONFIG } from "./config.js";
+import { generateContent } from "../utility/aiClient.js";
 
 export const generateCoverLetter = async (
   userProfile,

@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { GoogleGenAI } from "@google/genai";
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY,
+  apiKey: process.env.GEMINI_API_KEY,
 });
 /* async function test() {
   try {
@@ -20,7 +20,7 @@ async function test() {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: "Explain why should a web developer user AI?",
+      contents: "Explain why should a web developer user AI in 50 words?",
     });
     console.log(response.text);
   } catch (error) {

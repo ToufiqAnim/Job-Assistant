@@ -1,5 +1,6 @@
-import { extractText, generateContent } from "../common/aiClient";
-import { CONFIG } from "../common/config";
+import { extractText, generateContent } from "../utility/aiClient";
+import { CONFIG } from "../utility/config";
+import { parseJSON } from "../utility/parseJson";
 
 export const parseJobDescription = async (description) => {
   try {
@@ -34,10 +35,8 @@ Important: Return ONLY the JSON object, no additional text.`;
 
     const response = await generateContent(prompt);
     const text = extractText(response);
-    const cleanedText = text
-      .replace(/```json\n?/g, "")
-      .replace(/```\n?/g, "")
-      .trim();
+    const parseData = parseJSON(text);
+    return parseData;
   } catch (error) {
     console.log("Parse Error", error);
     throw new Error(`Failed to parse job description: ${error.mesage}`);

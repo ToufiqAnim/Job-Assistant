@@ -1,7 +1,7 @@
-import { CONFIG } from "./common/config";
-import { parseJobDescription } from "./analyzer/jobParser";
-import { scrapeJobUrl } from "./analyzer/jobScraper";
-import { calculateMatchScore } from "./analyzer/matchCalculator";
+import { CONFIG } from "../utility/config";
+import { parseJobDescription } from "./jobParser.js";
+import { scrapeJobUrl } from "./jobScraper.js";
+import { calculateMatchScore } from "./matchCalculator.js";
 
 export const analyzeJob = async (jobInput, userProfile) => {
   let description;

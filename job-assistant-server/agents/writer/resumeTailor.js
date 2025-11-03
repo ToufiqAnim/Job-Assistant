@@ -1,4 +1,5 @@
-import { extractText, generateContent } from "../common/aiClient";
+import { extractText, generateContent } from "../utility/aiClient";
+import { parseJSON } from "../utility/parseJson";
 
 export const tailorResume = async (masterResume, jobDetails, gapAnalysis) => {
   try {
@@ -30,12 +31,9 @@ export const tailorResume = async (masterResume, jobDetails, gapAnalysis) => {
     `;
     const response = await generateContent(prompt);
     const text = extractText(response);
-    const cleanedText = text
-      .replace(/```json\n?/g, "")
-      .replace(/```\n?/g, "")
-      .trim();
+    const parseData = parseJSON(text);
 
-    return JSON.parse(cleanedText);
+    return parseData;
   } catch (error) {
     console.error("Resume tailoring error:", error.message);
     throw new Error(`Resume tailoring failed: ${error.message}`);

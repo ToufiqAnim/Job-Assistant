@@ -1,5 +1,6 @@
-import { extractText, generateContent } from "../common/aiClient";
-import { CONFIG } from "../common/config";
+import { extractText, generateContent } from "../utility/aiClient";
+import { CONFIG } from "../utility/config";
+import { parseJSON } from "../utility/parseJson";
 
 export const calculateMatchScore = async (jobRequirements, userProfile) => {
   try {
@@ -29,12 +30,9 @@ export const calculateMatchScore = async (jobRequirements, userProfile) => {
     `;
     const response = await generateContent(prompt);
     const text = extractText(response);
-    const cleanedText = text
-      .replace(/```json\n?/g, "")
-      .replace(/```\n?/g, "")
-      .trim();
+    const parseData = parseJSON(text);
 
-    return JSON.parse(cleanedText);
+    return parseData;
   } catch (error) {
     console.error("Match calculation error:", error);
     throw new Error(`Failed to calculate match: ${error.message}`);
