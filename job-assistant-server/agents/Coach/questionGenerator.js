@@ -1,6 +1,6 @@
-import { extractText, generateContent } from "../utility/aiClient";
-import { CONFIG } from "../utility/config";
-import { parseJSON } from "../utility/parseJson";
+import { extractText, generateContent } from "../utility/aiClient.js";
+import { CONFIG } from "../utility/config.js";
+import { parseJSON } from "../utility/parseJson.js";
 
 export const generateInterviewQuestions = async (jobDetails, userProfile) => {
   try {
@@ -51,7 +51,7 @@ export const generateInterviewQuestions = async (jobDetails, userProfile) => {
       throw new Error("Invalid questions format returned by AI");
     }
 
-    return result.questions.slice(0, CONFIG.LIMITS.INTERVIEW_QUESTIONS_COUNT);
+    return result.questions.slice(0, CONFIG.AI.INTERVIEW_QUESTIONS_COUNT);
   } catch (error) {
     console.error("Question generation error:", error.message);
     throw new Error(`Failed to generate questions: ${error.message}`);

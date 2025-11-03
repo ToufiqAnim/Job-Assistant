@@ -20,4 +20,8 @@ export const CONFIG = {
     MIN_SCORE: 0,
     MAX_SCORE: 100,
   },
+  BATCH: {
+    SIZE: 5,
+    DELAY: 500,
+  },
 };
